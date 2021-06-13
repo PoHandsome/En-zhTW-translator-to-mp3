@@ -7,7 +7,7 @@ translator = Translator()
 def userinput():
     userins = []
     while True:
-        userin = input('Please enter the word(s) or sentence(s) you want to translate: ')
+        userin = input('Please enter the word(s) or sentence(s) you want to translate (double press enter to stop enter): ')
         if userin:
             userins.append(userin)
         else:
