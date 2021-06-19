@@ -7,7 +7,7 @@ from .step import Step
 
 class GetSentence(Step):
 
-    def process(self, word, data):
+    def process(self, word, data, utils):
 
         driver = webdriver.Firefox()
         

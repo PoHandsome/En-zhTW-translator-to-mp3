@@ -4,8 +4,15 @@ from gtts import gTTS
 from .step import Step
 
 class TranslateToMp3(Step):
+   
+    """
+    word is one of the user input
+    data stores the sentenses get from google translate
+    The order of prounouce will be English word 3 times in slow, Chinese translate 1 time, all of example sentences 1 time, and end sentence.
+    The output will store in the output directory under the same directory of execute place.
+    """
 
-    def process(self, word, data):
+    def process(self, word, data, utils):
         translator = Translator()
         i = word
         dest_text = translator.translate(i, dest = 'zh-TW').text
@@ -17,7 +24,7 @@ class TranslateToMp3(Step):
         else:
             tts_en2 = gTTS('. '.join(sens))
         tts_end = gTTS('This is the end of ' + i)
-        with open(i + '.mp3', 'wb') as f:
+        with open(utils.outdir + i + '.mp3', 'wb') as f:
             tts_en1.write_to_fp(f)
             tts_zh.write_to_fp(f)
             tts_en2.write_to_fp(f)

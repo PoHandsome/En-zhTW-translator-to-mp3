@@ -8,12 +8,16 @@ from .step import Step
 class GetUserInput(Step):
     
     word = None
-    def process(self, word, data):   
+    def process(self, word, data, utils):  
         translator = Translator()
         userins = []
         while True:
             userin = input('Please enter the word(s) you want to translate (double press enter to stop enter): ')
-            if not userin:
+            if utils.check_files(userin):
+                print('file exists')
+                continue
+            elif not userin:
+                print('start formatting!')
                 break
             elif translator.translate(userin, dest = 'zh-TW').text == userin:
                 print('Translate error: Please check your spelling.')
