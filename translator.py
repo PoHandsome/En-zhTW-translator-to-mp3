@@ -28,7 +28,7 @@ def userinput():
     return userins
 
 def get_sentences(userin):
-    driver = webdriver.Chrome()
+    driver = webdriver.Firefox()
 
     driver.get('https://translate.google.com.au/?hl=zh-TW&tab=rT&sl=en&tl=zh-TW&text='+ userin +'&op=translate')
     WebDriverWait(driver, 5).until(
