@@ -7,7 +7,7 @@ class Step(ABC):
         pass
 
     @abstractmethod
-    def process(self, word, data, utils):
+    def process(self, word, data, utils, logger):
         pass
 
     

@@ -3,6 +3,7 @@ from pipeline.steps.get_sentence import GetSentence
 from pipeline.steps.translate_to_mp3 import TranslateToMp3
 from pipeline.pipeline import Pipeline
 from utils import Utils
+from pipeline.steps.logger import Logger
 
 def main():
     steps = [
@@ -12,9 +13,10 @@ def main():
     ]
     utils = Utils()
 
+    logger = Logger.logger()
     p = Pipeline(steps)
-    p.run(utils)
-    print('Transform complete!')
+    p.run(utils, logger)
+    logger.info('Transform complete!')
 
 if __name__ == '__main__':
     main()

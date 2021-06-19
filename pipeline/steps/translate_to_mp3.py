@@ -12,7 +12,7 @@ class TranslateToMp3(Step):
     The output will store in the output directory under the same directory of execute place.
     """
 
-    def process(self, word, data, utils):
+    def process(self, word, data, utils, logger):
         translator = Translator()
         i = word
         dest_text = translator.translate(i, dest = 'zh-TW').text

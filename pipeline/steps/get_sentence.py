@@ -7,7 +7,7 @@ from .step import Step
 
 class GetSentence(Step):
 
-    def process(self, word, data, utils):
+    def process(self, word, data, utils, logger):
 
         driver = webdriver.Firefox()
         
@@ -15,6 +15,7 @@ class GetSentence(Step):
         WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, '//*[@id="yDmH0d"]/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[2]/c-wiz[2]/div[5]/div/div[1]/span[1]/span/span'))) # Wait until translate finish
 
+        # try click the expand more sentences button
         try:
             driver.find_element_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[2]/c-wiz/section/div/div/div[1]/div[2]/div/div[2]/div[1]').click()
         except:
@@ -22,10 +23,10 @@ class GetSentence(Step):
         ex_sentences = driver.find_elements_by_tag_name('html-blob')
         sens = []
         
-        for i in ex_sentences:
-            sen = i.text
-            if sen:
-                sens.append(sen)
+        # translate sentences into text and store in list
+        for sen in ex_sentences:
+            if sen.text:
+                sens.append(sen.text)
             else:
                 pass
         driver.close()
