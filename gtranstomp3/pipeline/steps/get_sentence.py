@@ -8,12 +8,22 @@ from .step import Step
 class GetSentence(Step):
 
     def process(self, word, data, utils, logger):
-
-        driver = webdriver.Firefox()
+       
+        if utils.driver == 'firefox':
+            driver = webdriver.Firefox()
+        elif utils.driver == 'edge':
+            driver = webdriver.Edge()
+        elif utils.driver == 'safari':
+            driver = webdriver.Safiri()
+        else:
+            driver = webdriver.Chrome()
         
         driver.get('https://translate.google.com.au/?hl=zh-TW&tab=rT&sl=en&tl=zh-TW&text='+ word +'&op=translate')
-        WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.XPATH, '//*[@id="yDmH0d"]/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[2]/c-wiz[2]/div[5]/div/div[1]/span[1]/span/span'))) # Wait until translate finish
+        try:
+            WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.XPATH, '//*[@id="yDmH0d"]/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[2]/c-wiz[2]/div[5]/div/div[1]/span[1]/span/span'))) # Wait until translate finish
+        except:
+            pass
 
         # try click the expand more sentences button
         try:

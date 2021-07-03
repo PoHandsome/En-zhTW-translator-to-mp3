@@ -1,4 +1,6 @@
+input/
 output/
+gtranstomp3/output/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

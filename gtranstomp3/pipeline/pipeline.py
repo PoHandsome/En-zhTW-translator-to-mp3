@@ -1,4 +1,5 @@
 from .steps.step import StepException
+from .steps.read_files import Readfile
 
 class Pipeline:
 
@@ -6,8 +7,13 @@ class Pipeline:
         self.steps = steps
 
     def run(self, utils, logger):
+        
+        if utils.input_opt:
+            word = Readfile.process(utils, logger)
+        else:
+            word = None
         data = None
-        word = None
+
         utils.check_dir()
         words = self.steps[0].process(word, data, utils, logger)
         for word in words:

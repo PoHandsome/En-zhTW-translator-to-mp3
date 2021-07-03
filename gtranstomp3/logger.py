@@ -2,6 +2,10 @@ import logging
 
 class Logger:
 
+    """
+    tool for printing debug & warning information
+    """
+
     def logger():
         logger = logging.getLogger(__name__)
         logger.setLevel(logging.NOTSET)
@@ -12,7 +16,7 @@ class Logger:
         logger.addHandler(file_handler)
 
         stream_handler = logging.StreamHandler()
-        stream_handler.setLevel(logging.WARNING)
+        stream_handler.setLevel(logging.NOTSET)
         stream_handler.setFormatter(formatter)
         logger.addHandler(stream_handler)
 
